@@ -10,14 +10,15 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-/* 
+Route::get('/signin', 'AuthController@signin');
 
+Route::get('/authorize', 'AuthController@gettoken');
 
-*/
-Route::get('/login', ['uses' => 'Controller@fazerLogin']);
+Route::get('/mail', 'OutlookController@mail')->name('mail');
 
-Route::get('/login', ['as' => 'user.login', 'uses' => 'Controller@fazerLogin']);
+Route::get('/calendar', 'OutlookController@calendar')->name('calendar');
 
+Route::get('/contacts', 'OutlookController@contacts')->name('contacts');
 
 Route::get('/', function () {
     return view('welcome');
