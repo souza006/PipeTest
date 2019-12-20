@@ -33,10 +33,10 @@ class ApiController extends Controller
     public function saveApiData()
     {
         $client = new Client();
-        $res = $client->request('POST', 'https://url_to_the_api', [
-            'form_params' => [
-                'client_id' => 'test_id',
-                'secret' => 'test_secret',
+        $res = $client->request('POST', 'https://teste123-sandbox.pipedrive.com/v1/deals?api_token=a627e863cd149b767d5d9217aa57b2008ad09209', [
+            'deal' => [
+                'title' => 'testeAPI',
+                'org_id' => 'testeAPI12',
             ]
         ]);
         echo $res->getStatusCode();
