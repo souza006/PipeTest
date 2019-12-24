@@ -15,7 +15,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/teste', ['uses'=>'PipeController@index', 'as' =>'pipeController.index']);
+Route::get('/teste', ['uses'=>'PipeController@getDeals', 'as' =>'PipeController.getDeals']);
 
 
 /*Route::get('/negocios', function() {
@@ -28,8 +28,8 @@ Route::get('/teste', ['uses'=>'PipeController@index', 'as' =>'pipeController.ind
 	return $body;
 });*/
 
-Route::get('/negocios/criar', ['uses' => 'PipeController@criarDeal', 'as' =>'pipeController.criar']);
-Route::post('/negocios/criar/salvar', ['uses' => 'PipeController@salvarDeal' , 'as' => 'pipeController.salvar']);
+Route::get('/negocios/criar', ['uses' => 'PipeController@criarDeal', 'as' =>'PipeController.criar']);
+Route::post('/negocios/criar/salvar', ['uses' => 'PipeController@salvarDeal' , 'as' => 'PipeController.salvar']);
 /*
 Route::post('/negocios/criar/salar', ['uses' => 'PipeController@salvarDeal' , 'as' => 'pipeController.salvar'] {
 
@@ -40,12 +40,6 @@ Route::post('/negocios/criar/salar', ['uses' => 'PipeController@salvarDeal' , 'a
                 'org_id' => 'testeAPI12',
             ]
         ]);
-	 	echo $res->getStatusCode();
-        // 200
-        echo $res->getHeader('content-type');
-        // 'application/json; charset=utf8'
-        echo $res->getBody();
-        // {"type":"User"...'
 });
 
 Route::get('/negocios/create', function(){})
