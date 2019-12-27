@@ -14,35 +14,16 @@ use GuzzleHttp\Client;
 Route::get('/', function () {
     return view('welcome');
 });
-
+//GET's//
 Route::get('/teste', ['uses'=>'PipeController@getDeals', 'as' =>'PipeController.getDeals']);
-
-
-/*Route::get('/negocios', function() {
-	$client = new Client();
-
-	$response = $client->request('GET', 'https://teste123-sandbox.pipedrive.com/v1/deals?api_token=a627e863cd149b767d5d9217aa57b2008ad09209');
-	$statusCode = $response->getStatusCode();
-	$body = $response->getBody()->getContents();
-
-	return $body;
-});*/
-
 Route::get('/negocios/criar', ['uses' => 'PipeController@criarDeal', 'as' =>'PipeController.criar']);
+Route::get('/negocios/{id}/detalhes', ['uses' => 'PipeController@getDeal', 'as' => 'PipeController.getDeal']);
+//Route::get('/negocios/verAtiv', ['uses' => 'PipeController@getAtiv', 'as' =>'PipeController.ativAll']);
+
+
+
+//POST'S//
 Route::post('/negocios/criar/salvar', ['uses' => 'PipeController@salvarDeal' , 'as' => 'PipeController.salvar']);
-/*
-Route::post('/negocios/criar/salar', ['uses' => 'PipeController@salvarDeal' , 'as' => 'pipeController.salvar'] {
-
-	$client = new Client();
-        $res = $client->request('POST', 'https://teste123-sandbox.pipedrive.com/v1/deals?api_token=a627e863cd149b767d5d9217aa57b2008ad09209', [
-            'deal' => [
-                'title' => 'testeAPI',
-                'org_id' => 'testeAPI12',
-            ]
-        ]);
-});
-
-Route::get('/negocios/create', function(){})
-*/
+//Route::post('/negocios/addAtividade/salvar', ['uses' => 'PipeController@addAtividade' , 'as' => 'PipeController.addAtiv']);
 
 
