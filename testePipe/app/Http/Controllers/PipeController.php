@@ -83,9 +83,9 @@ class PipeController extends Controller
 			}
     	}
 
-    public function getDeal($id){
+    /*public function getDeal($id){
 
-    	this->$deal = \App\Deal::findOrfail($id);
+    	$deal = \App\Deal::findOrfail($id);
     	$api_token = 'a627e863cd149b767d5d9217aa57b2008ad09209';
     	$company_domain = 'teste123';
     	$url = 'https://'.$company_domain.'.pipedrive.com/v1/deals?api_token=' . $api_token;
@@ -107,8 +107,11 @@ class PipeController extends Controller
 		
         	return view('dealDetail', compact('dados'));
 
-    }
-
+	}*/
+	
+	public function getAtiv(){
+		return view('ativ');
+	}
 
     public function addAtividade(Request $request){
 

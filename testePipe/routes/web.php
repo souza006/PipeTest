@@ -18,7 +18,7 @@ Route::get('/', function () {
 Route::get('/teste', ['uses'=>'PipeController@getDeals', 'as' =>'PipeController.getDeals']);
 Route::get('/negocios/criar', ['uses' => 'PipeController@criarDeal', 'as' =>'PipeController.criar']);
 Route::get('/negocios/{id}/detalhes', ['uses' => 'PipeController@getDeal', 'as' => 'PipeController.getDeal']);
-//Route::get('/negocios/verAtiv', ['uses' => 'PipeController@getAtiv', 'as' =>'PipeController.ativAll']);
+Route::get('/negocios/verAtiv', ['uses' => 'PipeController@getAtiv', 'as' =>'PipeController.ativAll']);
 
 
 
