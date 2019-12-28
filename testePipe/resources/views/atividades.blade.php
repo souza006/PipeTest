@@ -20,17 +20,16 @@
                       </div>
                   </div>
              </div>
-                <form action="{{route('PipeController.salvarDeal')}}" enctype="multipart/form-data" method="post" id="formTrabalhe">
+                <form action="{{route('PipeController.addAtiv')}}" enctype="multipart/form-data" method="post" id="formTrabalhe">
 
                   {{csrf_field()}}
                   <h4>Dados</h4>
                     <br>
-
                 <div class="row">
                       
-                      <div class="col-md-6"><input required="required" type="text" placeholder="E-mail" value="" name="title" id="title" class="form-control"></div>
-                      <div class="col-md-6"><input required="required" name="value" id="value" placeholder="VAlô" type="text" class="form-control"></div>
-                      <div class="col-md-6"><input required="required" name="org_id" id="org_id" placeholder="org" type="text" class="form-control"></div>
+                      <div class="col-md-6"><input required="required" type="text" placeholder="E-mail" value="" name="assunto" id="assunto" class="form-control"></div>
+                      <div class="col-md-6"><input required="required" name="tipo" id="tipo" placeholder="VAlô" type="text" class="form-control"></div>
+                      <div class="col-md-6"><input required="required" name="deal_id" id="deal_id" placeholder="org" type="text" class="form-control"></div>
                     <div class="col-md-12">
                       <label></label>
                     <input style="border-radius: 10px;" class="contact_button button btn btn-primary btn-block btn-lg" type="submit" onclick="JavaScript:timedRedirect()" name="submit" id="submit_deal" value="Enviar"/>

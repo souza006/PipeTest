@@ -18,12 +18,12 @@ Route::get('/', function () {
 Route::get('/teste', ['uses'=>'PipeController@getDeals', 'as' =>'PipeController.getDeals']);
 Route::get('/negocios/criar', ['uses' => 'PipeController@criarDeal', 'as' =>'PipeController.criar']);
 Route::get('/negocios/{id}/detalhes', ['uses' => 'PipeController@getDeal', 'as' => 'PipeController.getDeal']);
-Route::get('/negocios/verAtiv', ['uses' => 'PipeController@getAtiv', 'as' =>'PipeController.ativAll']);
+Route::get('/ativ', ['uses' => 'PipeController@getAtiv', 'as' =>'PipeController.getAtiv']);
 
 
 
 //POST'S//
-Route::post('/negocios/criar/salvar', ['uses' => 'PipeController@salvarDeal' , 'as' => 'PipeController.salvar']);
-//Route::post('/negocios/addAtividade/salvar', ['uses' => 'PipeController@addAtividade' , 'as' => 'PipeController.addAtiv']);
+Route::post('/negocios/criar/salvar', ['uses' => 'PipeController@salvarDeal' , 'as' => 'PipeController.salvarDeal']);
+Route::post('/negocios/addAtividade/salvar', ['uses' => 'PipeController@addAtividade' , 'as' => 'PipeController.addAtiv']);
 
 

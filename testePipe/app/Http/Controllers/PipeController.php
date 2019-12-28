@@ -110,7 +110,7 @@ class PipeController extends Controller
 	}*/
 	
 	public function getAtiv(){
-		return view('ativ');
+		return view('atividades');
 	}
 
     public function addAtividade(Request $request){
@@ -128,7 +128,7 @@ class PipeController extends Controller
 			curl_setopt($ch, CURLOPT_URL, $url);
 			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 			curl_setopt($ch, CURLOPT_POST, true);
-			curl_setopt($ch, CURLOPT_POSTFIELDS, $deal);
+			curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
 		 
 		 
 		$output = curl_exec($ch);
@@ -142,6 +142,8 @@ class PipeController extends Controller
 
 
    		 }
+
+   		 dd($result);
    	}
 
 }
