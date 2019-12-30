@@ -8,7 +8,7 @@
     <h1>Listagem das categorias:</h1>
  
     @foreach ( $dados as $dado )
-      <p>Negócio:<a href="{{route('PipeController.getDeal' , $dado->id)}}"> {{ $dado['title'] }}</p></a>
+      <p>Negócio:<a href="#"> {{ $dado['title'] }}</p></a>
         
     @endforeach
         

@@ -37,8 +37,6 @@ class PipeController extends Controller
 			
 			$request = json_decode($output, true);
 
-			
-
 			$dados = $request['data'];
 
 		
