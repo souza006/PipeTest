@@ -28,7 +28,9 @@
 
                 <div class="row">
                       
-                      <div class="col-md-6"><input required="required" type="text" placeholder="E-mail" value="" name="title" id="title" class="form-control"></div>
+                      <div class="col-md-6"><input required="required" type="text" placeholder="titulo" value="" name="title" id="title" class="form-control"></div>
+                      <div class="col-md-6"><input required="required" type="text" placeholder="criador" value="" name="criador" id="criador" class="form-control"></div>
+                      <div class="col-md-6"><input required="required" type="text" placeholder="estagio" value="" name="stage" id="stage" class="form-control"></div>
                       <div class="col-md-6"><input required="required" name="value" id="value" placeholder="VAlô" type="text" class="form-control"></div>
                       <div class="col-md-6"><input required="required" name="org_id" id="org_id" placeholder="org" type="text" class="form-control"></div>
                     <div class="col-md-12">

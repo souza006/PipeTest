@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use GuzzleHttp\Client;
 use App\Deal;
 use Illuminate\Database\Eloquent\Model;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\DealsExport;
+
 
 
 class PipeController extends Controller
@@ -18,7 +21,7 @@ class PipeController extends Controller
 	*
 	*/
     public function getDeals(Request $request){
-           $api_token = 'a627e863cd149b767d5d9217aa57b2008ad09209';
+           	$api_token = 'a627e863cd149b767d5d9217aa57b2008ad09209';
 
 
 			$company_domain = 'teste123';
@@ -39,8 +42,9 @@ class PipeController extends Controller
 
 			$dados = $request['data'];
 
-		
         	return view('deals', compact('dados'));
+
+
 
     }
 
@@ -56,9 +60,11 @@ class PipeController extends Controller
 				'title' => $request->title,
 				'value' => $request->value,
 				'org_id' => $request->org_id,
-				'currency' => $request->currency,
+				'stage_id' => $request->stage,
+				/**'currency' => $request->currency,
 				'user_id' => $request->user_id,
-				'person_id' =>$request->person_id
+				'person_id' =>$request->person_id*/
+				'7668999bc0ffd7fbd10db12359a84a5db7a66a62' => $request->criador,
 			);
 		 
 		$url = 'https://companydomain.pipedrive.com/v1/deals?api_token=' . $api_token;
@@ -79,33 +85,51 @@ class PipeController extends Controller
 			if (!empty($result['data']['id'])) {
 		   		echo "<script> alert('Negócio salvo com sucesso.');</script>";
 			}
+
     	}
 
-    /*public function getDeal($id){
+   public function getDeal($deal_id){
+	   
+   			$client = new Client();
 
-    	$deal = \App\Deal::findOrfail($id);
-    	$api_token = 'a627e863cd149b767d5d9217aa57b2008ad09209';
-    	$company_domain = 'teste123';
-    	$url = 'https://'.$company_domain.'.pipedrive.com/v1/deals?api_token=' . $api_token;
+		    $api_token = 'a627e863cd149b767d5d9217aa57b2008ad09209';
+		    $company_domain = 'teste123';
+		    
+			$response = $client->request('GET', 'https://' . $company_domain . '.pipedrive.com/v1/deals/' . $deal_id . '?api_token=' . $api_token);
+			$statusCode = $response->getStatusCode();
+			$body = $response->getBody()->getContents();
+			
+			$result = json_decode($body, true);
+			
 
+			$dados = $result['data'];
 
-		$ch = curl_init();
+			$deal_id = $dados['id'];
+
+			dd($dados);
+
+			$api_token = 'a627e863cd149b767d5d9217aa57b2008ad09209';
+    		$company_domain = 'teste123';
+    		$url = 'https://' . $company_domain . '.pipedrive.com/v1/deals/' . $deal_id . '?api_token=' . $api_token;
+
+			$ch = curl_init();
 			curl_setopt($ch, CURLOPT_URL, $url);
 			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 		  
 		  
-		$output = curl_exec($ch);
+			$output = curl_exec($ch);
 			curl_close($ch);
 
 		
-		$result = json_decode($output, true);
+			$result2 = json_decode($output, true);
 
 
-		$dados = $request['data'];
-		
-        	return view('dealDetail', compact('dados'));
+			$dados2 = $request['data'];
 
-	}*/
+			return view('dealDetail', compact('dados'));
+
+
+		}
 	
 	public function getAtiv(){
 		return view('atividades');
@@ -136,12 +160,69 @@ class PipeController extends Controller
 		$result = json_decode($output, true);
 		
 			if (!empty($result['data']['id'])) {
-		   		echo "<script> alert('Negócio salvo com sucesso.');</script>";
-
-
+		   		echo "<script> alert('Atividade criada com sucesso.');</script>";
    		 }
+   	}
 
-   		 dd($result);
+   	public function addOrg(Request $request){
+ 
+		$api_token = 'a627e863cd149b767d5d9217aa57b2008ad09209';
+ 
+		$data = array(
+  			'name' => $request->name,
+  			'owner_id' => $request->owner
+		);
+ 
+		$url = 'https://companydomain.pipedrive.com/v1/organizations?api_token=' . $api_token;
+ 
+		$ch = curl_init();
+		curl_setopt($ch, CURLOPT_URL, $url);
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+		curl_setopt($ch, CURLOPT_POST, true);
+		curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+ 
+
+ 
+		$output = curl_exec($ch);
+		curl_close($ch);
+
+		$result = json_decode($output, true);
+		 
+		
+		if (!empty($result['data']['id'])) {
+		  echo "<script> alert('Negócio atualizado com sucesso.');</script>";
+		}
+
+		return redirect()->route('negocios');
+   	}
+
+
+
+   	public function export(){
+   			dd("'teste' export");
+   			/*
+   			$api_token = 'a627e863cd149b767d5d9217aa57b2008ad09209';
+
+
+			$company_domain = 'teste123';
+ 
+			
+			$url = 'https://'.$company_domain.'.pipedrive.com/v1/deals?api_token=' . $api_token;
+			 
+			
+			$ch = curl_init();
+			curl_setopt($ch, CURLOPT_URL, $url);
+			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+			$output = curl_exec($ch);
+			curl_close($ch);
+			 
+			
+			$result = json_decode($output, true);
+
+			$dados = $result['data'];*/
+   		 return Excel::download(new DealsExport, 'deals.xlsx');
+   			
    	}
 
 }

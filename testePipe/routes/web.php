@@ -15,11 +15,13 @@ Route::get('/', function () {
     return view('welcome');
 });
 //GET's//
-Route::get('/teste', ['uses'=>'PipeController@getDeals', 'as' =>'PipeController.getDeals']);
+Route::get('/negocios', ['uses'=>'PipeController@getDeals', 'as' =>'PipeController.getDeals']);
 Route::get('/negocios/criar', ['uses' => 'PipeController@criarDeal', 'as' =>'PipeController.criar']);
-Route::get('/negocios/{id}/detalhes', ['uses' => 'PipeController@getDeal', 'as' => 'PipeController.getDeal']);
+Route::get('/negocios/{id}', ['uses' => 'PipeController@getDeal', 'as' => 'PipeController.getDeal']);
+Route::get('/negocios/export/excel', ['uses' => 'PipeController@export', 'as' => 'PipeController.export']);
 Route::get('/ativ', ['uses' => 'PipeController@getAtiv', 'as' =>'PipeController.getAtiv']);
 
+Route::get('/teste',  ['uses' => 'PipeController@export', 'as' => 'PipeController.export']);
 
 
 //POST'S//
